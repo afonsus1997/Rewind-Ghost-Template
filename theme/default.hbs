@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
+    <link rel="stylesheet" href="{{asset "css/screen.css"}}">
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}{{#if @custom.pixel_art_images}} pixel-art{{/if}}">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="site">
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="site-logo" href="{{@site.url}}">
+                {{#if @site.logo}}
+                    <img src="{{@site.logo}}" alt="{{@site.title}}">
+                {{else}}
+                    {{> "logo-mark"}}
+                    <span>{{@site.title}}</span>
+                {{/if}}
+            </a>
+            <nav class="site-nav" aria-label="Main">
+                {{navigation}}
+            </nav>
+            <button class="search-button" type="button" data-ghost-search aria-label="Search reviews">
+                {{> "icon-search"}}
+                <span class="search-label">Search albums, artists, tags</span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main" class="site-main">
+        {{{body}}}
+    </main>
+
+    <footer class="site-footer">
+        {{> "subscribe" id="footer-email"}}
+        <div class="container footer-bottom">
+            <span>&copy; {{date format="YYYY"}} {{@site.title}}</span>
+            <nav class="footer-nav" aria-label="Footer">
+                {{navigation type="secondary"}}
+                <a href="{{@site.url}}/rss/">RSS</a>
+            </nav>
+        </div>
+    </footer>
+
+</div>
+<script src="{{asset "js/main.js"}}"></script>
+{{ghost_foot}}
+</body>
+</html>

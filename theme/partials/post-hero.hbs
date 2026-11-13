@@ -1,0 +1,21 @@
+<section class="container hero" aria-labelledby="hero-title">
+    <a class="hero-cover" href="{{url}}" aria-label="Read the review of {{title}}">
+        {{#if feature_image}}
+            <img
+                srcset="{{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}} 960w"
+                sizes="(max-width: 900px) 100vw, 560px"
+                src="{{img_url feature_image size="l"}}"
+                alt="">
+        {{else}}
+            <span class="cover-fallback" aria-hidden="true"></span>
+        {{/if}}
+    </a>
+    <div class="hero-body">
+        <p class="kicker">Latest review &middot; {{date format="D MMM YYYY"}}</p>
+        <h1 id="hero-title" class="hero-title"><a href="{{url}}">{{title}}</a></h1>
+        <p class="hero-artist">{{> "artist-link"}}</p>
+        <p class="hero-excerpt">{{excerpt words="45"}}</p>
+        {{> "tag-pills"}}
+        <a class="btn btn-accent" href="{{url}}">Read the review</a>
+    </div>
+</section>

@@ -1,0 +1,5 @@
+{{#if tags}}
+<ul class="pills">
+    {{#foreach tags}}{{#match slug "~^" "artist-"}}{{else}}<li><a class="pill" href="{{url}}">{{name}}</a></li>{{/match}}{{/foreach}}
+</ul>
+{{/if}}

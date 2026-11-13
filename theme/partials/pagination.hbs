@@ -1,0 +1,7 @@
+{{#match pages ">" 1}}
+<nav class="pagination" aria-label="Pagination">
+    {{#if prev}}<a class="btn btn-ghost" href="{{page_url prev}}">&larr; Newer</a>{{/if}}
+    <span class="page-number">Page {{page}} of {{pages}}</span>
+    {{#if next}}<a class="btn btn-ghost" href="{{page_url next}}">Older reviews &rarr;</a>{{/if}}
+</nav>
+{{/match}}

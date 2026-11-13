@@ -1,0 +1,17 @@
+{{#if @site.members_enabled}}{{#unless @member}}
+<section class="subscribe" aria-labelledby="{{id}}-title">
+    <div class="container subscribe-inner">
+        <div class="subscribe-text">
+            <p id="{{id}}-title" class="subscribe-title">{{@custom.newsletter_title}}</p>
+            <p class="subscribe-sub">No spam, unsubscribe anytime.</p>
+        </div>
+        <form class="subscribe-form" data-members-form="subscribe">
+            <label for="{{id}}" class="sr-only">Email address</label>
+            <input id="{{id}}" data-members-email type="email" placeholder="you@example.com" autocomplete="email" required>
+            <button class="btn btn-accent" type="submit">Subscribe</button>
+            <p class="form-msg form-success" role="status">Almost there: check your inbox to confirm.</p>
+            <p class="form-msg form-error" role="alert">Something went wrong. Please try again.</p>
+        </form>
+    </div>
+</section>
+{{/unless}}{{/if}}

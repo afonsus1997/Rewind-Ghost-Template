@@ -1,0 +1,61 @@
+{{!< default}}
+
+<section class="container archive-head">
+    {{#post}}
+    <div class="archive-intro">
+        <p class="kicker">Index</p>
+        <h1 class="archive-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="archive-desc">{{custom_excerpt}}</p>{{/if}}
+    </div>
+    {{/post}}
+    {{#get "posts" limit="1" fields="id"}}
+    <dl class="stats">
+        <div><dt>Reviews</dt><dd>{{pagination.total}}</dd></div>
+    </dl>
+    {{/get}}
+</section>
+
+{{#get "posts" limit="100" include="tags" order="published_at desc"}}
+<section class="container archive-list" aria-label="All reviews">
+    <div class="index-tools">
+        <div class="index-filter">
+            <label for="review-filter" class="sr-only">Filter reviews</label>
+            {{> "icon-search"}}
+            <input id="review-filter" type="search" placeholder="Filter by album, artist, genre or year" autocomplete="off" data-review-filter>
+        </div>
+        <div class="chips" role="group" aria-label="Sort reviews">
+            <button class="chip is-active" type="button" data-review-sort="date" aria-pressed="true">Newest</button>
+            <button class="chip" type="button" data-review-sort="title" aria-pressed="false">A–Z</button>
+        </div>
+    </div>
+
+    <ol class="rows review-index" data-review-list>
+        {{#foreach posts}}
+            <li data-title="{{title}}" data-date="{{date format="YYYY-MM-DDTHH:mm"}}" data-search="{{title}} {{#foreach tags}}{{name}} {{/foreach}}">
+                <a class="row row-compact" href="{{url}}">
+                    <span class="row-cover" aria-hidden="true">
+                        {{#if feature_image}}
+                            <img src="{{img_url feature_image size="xs"}}" alt="" loading="lazy">
+                        {{else}}
+                            <span class="cover-fallback"></span>
+                        {{/if}}
+                    </span>
+                    <span class="row-body">
+                        <span class="row-title">{{title}}</span>
+                        <span class="row-artist">{{#foreach tags}}{{#match slug "~^" "artist-"}}<span>{{name}}</span>{{/match}}{{/foreach}}</span>
+                        <span class="row-meta dot-list">{{> "genre-year"}}</span>
+                    </span>
+                    <time class="row-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                </a>
+            </li>
+        {{/foreach}}
+    </ol>
+    <p class="archive-desc index-empty" data-review-empty hidden>No reviews match that filter.</p>
+</section>
+{{/get}}
+
+{{#post}}
+{{#if html}}
+    <div class="container review-body"><div class="gh-content">{{content}}</div></div>
+{{/if}}
+{{/post}}

@@ -1,0 +1,83 @@
+{{!< default}}
+
+{{#post}}
+<article class="review {{post_class}}">
+    <header class="container review-head">
+        <div class="review-cover">
+            {{#if feature_image}}
+                <img
+                    srcset="{{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}} 960w"
+                    sizes="(max-width: 900px) 100vw, 520px"
+                    src="{{img_url feature_image size="l"}}"
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}Cover of {{title}}{{/if}}">
+            {{else}}
+                <span class="cover-fallback" aria-hidden="true"></span>
+            {{/if}}
+        </div>
+        <div class="review-intro">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="{{@site.url}}">Reviews</a>
+                {{#primary_tag}}{{#match slug "~^" "artist-"}}{{else}}<span aria-hidden="true">/</span><a href="{{url}}">{{name}}</a>{{/match}}{{/primary_tag}}
+            </nav>
+            <h1 class="review-title">{{title}}</h1>
+            <p class="review-artist">{{> "artist-link"}}</p>
+            <dl class="review-meta">
+                <div><dt>Written by</dt><dd>{{#primary_author}}<a href="{{url}}">{{name}}</a>{{/primary_author}}</dd></div>
+                <div><dt>Published</dt><dd><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time></dd></div>
+                <div><dt>Filed under</dt><dd class="dot-list">{{> "genre-year"}}</dd></div>
+                <div><dt>Reading time</dt><dd>{{reading_time}}</dd></div>
+            </dl>
+        </div>
+    </header>
+
+    <div class="container review-layout">
+        <div class="review-main">
+            {{#if custom_excerpt}}<p class="review-lede">{{custom_excerpt}}</p>{{/if}}
+            <div class="gh-content" data-review-content>
+                {{content}}
+            </div>
+        </div>
+
+        <aside class="review-aside" aria-label="Album details">
+            <section class="aside-box aside-listen" data-aside-listen hidden>
+                <h2 class="aside-title">Listen</h2>
+            </section>
+            <section class="aside-section" data-aside-tracks hidden>
+                <h2 class="aside-title">Standout tracks</h2>
+            </section>
+            {{#if tags}}
+            <section class="aside-section">
+                <h2 class="aside-title">Tags</h2>
+                <ul class="pills">
+                    {{#foreach tags}}<li><a class="pill" href="{{url}}">{{name}}</a></li>{{/foreach}}
+                </ul>
+            </section>
+            {{/if}}
+        </aside>
+    </div>
+</article>
+
+<section class="related" aria-labelledby="related-title">
+    <div class="container">
+        <div class="section-head">
+            <h2 id="related-title">If you liked this</h2>
+            <a class="text-link" href="{{@site.url}}">All reviews &rarr;</a>
+        </div>
+        <div class="post-grid">
+            {{#if primary_tag}}
+                {{#get "posts" filter="tags:{{primary_tag.slug}}+id:-{{id}}" limit="4" include="tags"}}
+                    {{#foreach posts}}{{> "post-card"}}{{/foreach}}
+                {{else}}
+                    {{#get "posts" filter="id:-{{id}}" limit="4" include="tags"}}
+                        {{#foreach posts}}{{> "post-card"}}{{/foreach}}
+                    {{/get}}
+                {{/get}}
+            {{else}}
+                {{#get "posts" filter="id:-{{id}}" limit="4" include="tags"}}
+                    {{#foreach posts}}{{> "post-card"}}{{/foreach}}
+                {{/get}}
+            {{/if}}
+        </div>
+    </div>
+</section>
+{{/post}}

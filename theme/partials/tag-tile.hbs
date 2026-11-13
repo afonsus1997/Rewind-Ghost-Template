@@ -1,0 +1,23 @@
+<li>
+    <a class="tag-tile" href="{{url}}">
+        <span class="tag-tile-cover" aria-hidden="true">
+            {{#if feature_image}}
+                <img src="{{img_url feature_image size="s"}}" alt="" loading="lazy">
+            {{else}}
+                {{#get "posts" filter="tags:{{slug}}" limit="1" fields="feature_image"}}
+                    {{#foreach posts}}
+                        {{#if feature_image}}
+                            <img src="{{img_url feature_image size="s"}}" alt="" loading="lazy">
+                        {{else}}
+                            <span class="cover-fallback"></span>
+                        {{/if}}
+                    {{/foreach}}
+                {{else}}
+                    <span class="cover-fallback"></span>
+                {{/get}}
+            {{/if}}
+        </span>
+        <span class="tag-tile-name">{{name}}</span>
+        <span class="tag-tile-count">{{plural count.posts empty="No reviews yet" singular="% review" plural="% reviews"}}</span>
+    </a>
+</li>

@@ -1,0 +1,10 @@
+# Secrets and server data
+deploy/.env
+deploy/data/
+
+# Build output (rewind.zip at the repo root is kept on purpose)
+dist/
+
+# Tooling
+node_modules/
+.DS_Store

@@ -1,0 +1,33 @@
+{{!< default}}
+
+{{#post}}
+<article class="about {{post_class}}">
+    <header class="container about-hero">
+        {{#if feature_image}}
+            <img class="about-avatar crisp" src="{{feature_image}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}Portrait{{/if}}" width="320" height="320">
+        {{else}}
+            {{#primary_author}}{{#if profile_image}}
+                <img class="about-avatar crisp" src="{{profile_image}}" alt="Portrait of {{name}}" width="320" height="320">
+            {{/if}}{{/primary_author}}
+        {{/if}}
+        <div class="about-intro">
+            <p class="kicker">About me</p>
+            <h1 class="about-title">{{title}}</h1>
+            {{#if custom_excerpt}}
+                <p class="about-bio">{{custom_excerpt}}</p>
+            {{else}}
+                {{#primary_author}}{{#if bio}}<p class="about-bio">{{bio}}</p>{{/if}}{{/primary_author}}
+            {{/if}}
+            {{#primary_author}}{{#if website}}
+                <a class="btn btn-accent" href="{{website}}">Personal website &nearr;</a>
+            {{/if}}{{/primary_author}}
+        </div>
+    </header>
+
+    <div class="container review-body">
+        <div class="gh-content">
+            {{content}}
+        </div>
+    </div>
+</article>
+{{/post}}

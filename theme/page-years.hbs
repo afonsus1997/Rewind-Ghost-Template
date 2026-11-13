@@ -1,0 +1,24 @@
+{{!< default}}
+
+{{#post}}
+<section class="container archive-head">
+    <div class="archive-intro">
+        <p class="kicker">Index</p>
+        <h1 class="archive-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="archive-desc">{{custom_excerpt}}</p>{{/if}}
+    </div>
+</section>
+{{#if html}}
+    <div class="container review-body index-intro"><div class="gh-content">{{content}}</div></div>
+{{/if}}
+{{/post}}
+
+<section class="container archive-list" aria-label="All years">
+    {{#get "tags" filter="visibility:public+slug:~^'year-'" limit="100" order="name desc" include="count.posts"}}
+        <ul class="tag-grid">
+            {{#foreach tags}}{{> "tag-tile"}}{{/foreach}}
+        </ul>
+    {{else}}
+        <p class="archive-desc">No years yet. Add a year tag to your reviews, e.g. name 2025 with slug <code>year-2025</code>.</p>
+    {{/get}}
+</section>

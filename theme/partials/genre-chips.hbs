@@ -1,0 +1,8 @@
+<nav class="chips" aria-label="Browse by genre">
+    <a class="chip" href="{{@site.url}}/" data-chip>All</a>
+    {{#get "tags" filter="visibility:public+slug:-~^'artist-'+slug:-~^'year-'" limit="12" order="count.posts desc" include="count.posts"}}
+        {{#foreach tags}}
+            <a class="chip" href="{{url}}" data-chip>{{name}}</a>
+        {{/foreach}}
+    {{/get}}
+</nav>

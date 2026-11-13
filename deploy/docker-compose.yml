@@ -1,0 +1,58 @@
+# Rewind — self-hosted Ghost 6 (Ghost + MySQL), behind Nginx Proxy Manager
+# Usage:
+#   cp .env.example .env   # then fill in your values
+#   docker compose up -d
+#   In NPM: proxy rewind.afonsomuralha.com → http://<server-ip>:8098, with SSL
+#   open https://YOUR_DOMAIN/ghost to create your admin account
+
+services:
+  ghost:
+    image: ghost:6-alpine
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8098:2368"
+    environment:
+      url: https://${DOMAIN}
+      NODE_ENV: production
+
+      # Database
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ghost
+      database__connection__password: ${DB_PASSWORD}
+      database__connection__database: ghost
+
+      # Transactional email (sign-in links, signup confirmations).
+      # Newsletters are configured separately in Ghost admin › Settings › Email newsletter (Mailgun API key).
+      mail__transport: SMTP
+      mail__from: ${MAIL_FROM}
+      mail__options__host: ${SMTP_HOST}
+      mail__options__port: ${SMTP_PORT}
+      mail__options__secure: "false"
+      mail__options__auth__user: ${SMTP_USER}
+      mail__options__auth__pass: ${SMTP_PASS}
+    volumes:
+      - ./data/ghost:/var/lib/ghost/content
+      # Optional, while developing your theme: mount it straight in, then
+      # `docker compose restart ghost` after changes. For production, upload the zip in admin instead.
+      # (path below assumes this file sits in the repo's deploy/ folder)
+      # - ../theme:/var/lib/ghost/content/themes/rewind
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ghost
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10

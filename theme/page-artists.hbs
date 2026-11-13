@@ -1,0 +1,24 @@
+{{!< default}}
+
+{{#post}}
+<section class="container archive-head">
+    <div class="archive-intro">
+        <p class="kicker">Index</p>
+        <h1 class="archive-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="archive-desc">{{custom_excerpt}}</p>{{/if}}
+    </div>
+</section>
+{{#if html}}
+    <div class="container review-body index-intro"><div class="gh-content">{{content}}</div></div>
+{{/if}}
+{{/post}}
+
+<section class="container archive-list" aria-label="All artists">
+    {{#get "tags" filter="visibility:public+slug:~^'artist-'" limit="100" order="name asc" include="count.posts"}}
+        <ul class="tag-grid">
+            {{#foreach tags}}{{> "tag-tile"}}{{/foreach}}
+        </ul>
+    {{else}}
+        <p class="archive-desc">No artists yet. Tag a review with an artist tag whose slug starts with <code>artist-</code>.</p>
+    {{/get}}
+</section>

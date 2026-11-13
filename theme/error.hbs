@@ -1,0 +1,8 @@
+{{!< default}}
+
+<section class="container error-page">
+    <p class="kicker">Error {{statusCode}}</p>
+    <h1 class="archive-title">{{#match statusCode 404}}This track skipped.{{else}}Something went wrong.{{/match}}</h1>
+    <p class="archive-desc">{{message}}</p>
+    <a class="btn btn-accent" href="{{@site.url}}">Rewind to the homepage</a>
+</section>

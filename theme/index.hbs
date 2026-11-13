@@ -1,0 +1,53 @@
+{{!< default}}
+
+{{#is "home"}}
+    {{#if @custom.show_welcome_banner}}
+    <section class="welcome" data-welcome aria-labelledby="welcome-title">
+        <script>try{if(localStorage.getItem('rewind-welcome-dismissed')==='1'){document.currentScript.parentElement.hidden=true}}catch(e){}</script>
+        <div class="container welcome-inner">
+            {{#if @custom.welcome_image}}
+                <img class="welcome-image crisp" src="{{@custom.welcome_image}}" alt="" width="128" height="128">
+            {{else if @site.icon}}
+                <img class="welcome-image" src="{{@site.icon}}" alt="" width="128" height="128">
+            {{/if}}
+            <div class="welcome-text">
+                <h2 id="welcome-title">{{@custom.welcome_title}}</h2>
+                <p>{{@custom.welcome_text}}</p>
+            </div>
+            <div class="welcome-actions">
+                {{#if @custom.welcome_button_link}}
+                    <a class="btn btn-dark" href="{{@custom.welcome_button_link}}">{{@custom.welcome_button_label}}</a>
+                {{/if}}
+                <button class="welcome-close" type="button" data-welcome-close aria-label="Dismiss welcome message">
+                    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+    {{/if}}
+
+    {{#foreach posts limit="1"}}
+        {{> "post-hero"}}
+    {{/foreach}}
+{{/is}}
+
+<section class="container latest" aria-labelledby="latest-title">
+    <div class="section-head">
+        <h2 id="latest-title">{{#is "home"}}Latest reviews{{else}}Reviews{{/is}}</h2>
+        {{> "genre-chips"}}
+    </div>
+
+    <div class="post-grid">
+        {{#is "home"}}
+            {{#foreach posts from="2"}}
+                {{> "post-card"}}
+            {{/foreach}}
+        {{else}}
+            {{#foreach posts}}
+                {{> "post-card"}}
+            {{/foreach}}
+        {{/is}}
+    </div>
+
+    {{pagination}}
+</section>
