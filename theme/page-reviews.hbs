@@ -23,6 +23,11 @@
             {{> "icon-search"}}
             <input id="review-filter" type="search" placeholder="Filter by album, artist, genre or year" autocomplete="off" data-review-filter>
         </div>
+        <div class="chips" role="group" aria-label="Show">
+            <button class="chip is-active" type="button" data-review-type="all" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-review-type="review" aria-pressed="false">Reviews</button>
+            <button class="chip" type="button" data-review-type="letter" aria-pressed="false">Love letters</button>
+        </div>
         <div class="chips" role="group" aria-label="Sort reviews">
             <button class="chip is-active" type="button" data-review-sort="date" aria-pressed="true">Newest</button>
             <button class="chip" type="button" data-review-sort="title" aria-pressed="false">A–Z</button>
@@ -31,7 +36,7 @@
 
     <ol class="rows review-index" data-review-list>
         {{#foreach posts}}
-            <li data-title="{{title}}" data-date="{{date format="YYYY-MM-DDTHH:mm"}}" data-search="{{title}} {{#foreach tags}}{{name}} {{/foreach}}">
+            <li data-type="{{#has tag="#love-letter"}}letter{{else}}review{{/has}}" data-title="{{title}}" data-date="{{date format="YYYY-MM-DDTHH:mm"}}" data-search="{{title}} {{#foreach tags}}{{name}} {{/foreach}}">
                 <a class="row row-compact" href="{{url}}">
                     <span class="row-cover" aria-hidden="true">
                         {{#if feature_image}}
@@ -41,7 +46,7 @@
                         {{/if}}
                     </span>
                     <span class="row-body">
-                        <span class="row-title">{{title}}</span>
+                        <span class="row-title">{{title}}{{#has tag="#love-letter"}} <span class="row-badge">{{> "icon-heart"}} Love letter</span>{{/has}}</span>
                         <span class="row-artist">{{#foreach tags}}{{#match slug "~^" "artist-"}}<span>{{name}}</span>{{/match}}{{/foreach}}</span>
                         <span class="row-meta dot-list">{{> "genre-year"}}</span>
                     </span>

@@ -147,7 +147,8 @@ Create these pages (**Pages › New page**, then set the **Page URL** in page se
 | Slug | Title (example) | Notes |
 |---|---|---|
 | `about` | Hi, I'm Your Name. | Feature image = portrait. Excerpt = intro line. Body = your story and links. |
-| `reviews` | Reviews | Leave the body empty: the list of all reviews is generated. |
+| `reviews` | Reviews | Leave the body empty: the list of all reviews and love letters is generated. |
+| `letters` | Love letters | Lists posts with the internal tag `#love-letter`. Excerpt example: "Games and films I fell for, told through their music." |
 | `artists` | Artists | Generated from artist tags. |
 | `genres` | Genres | Generated from genre tags. |
 | `years` | Years | Generated from year tags. |
@@ -161,6 +162,7 @@ The excerpt of each index page shows as a subtitle; anything in the body shows b
 | Label | URL |
 |---|---|
 | Reviews | `/reviews/` |
+| Love letters | `/letters/` |
 | Artists | `/artists/` |
 | Genres | `/genres/` |
 | Years | `/years/` |

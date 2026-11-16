@@ -14,6 +14,7 @@ Theme development tracker. For albums to review, see [docs/REVIEW-TRACKER.md](do
 - [x] Artist pages via `artist-` tags, with multiple artists shown as "A & B"
 - [x] Index pages: Reviews (filter and sort), Artists, Genres, Years
 - [x] About page layout
+- [x] Love letters series for games and films, centred on their soundtracks
 - [x] Newsletter signup with Ghost members
 - [x] Docker Compose deployment behind a reverse proxy
 - [x] CI: gscan validation, zip build, GitHub releases, optional auto-deploy

@@ -55,12 +55,15 @@
         var filter = document.querySelector('[data-review-filter]');
         var empty = document.querySelector('[data-review-empty]');
         var sortButtons = document.querySelectorAll('[data-review-sort]');
+        var typeButtons = document.querySelectorAll('[data-review-type]');
+        var type = 'all';
 
         var applyFilter = function () {
-            var q = (filter.value || '').trim().toLowerCase();
+            var q = filter ? (filter.value || '').trim().toLowerCase() : '';
             var shown = 0;
             items.forEach(function (li) {
-                var match = !q || li.getAttribute('data-search').toLowerCase().indexOf(q) !== -1;
+                var match = (!q || li.getAttribute('data-search').toLowerCase().indexOf(q) !== -1) &&
+                    (type === 'all' || li.getAttribute('data-type') === type);
                 li.hidden = !match;
                 if (match) { shown++; }
             });
@@ -83,6 +86,23 @@
         };
 
         if (filter) { filter.addEventListener('input', applyFilter); }
+        Array.prototype.forEach.call(typeButtons, function (btn) {
+            btn.addEventListener('click', function () {
+                type = btn.getAttribute('data-review-type');
+                Array.prototype.forEach.call(typeButtons, function (b) {
+                    var on = b === btn;
+                    b.classList.toggle('is-active', on);
+                    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+                });
+                applyFilter();
+            });
+        });
+        // Open pre-filtered with /reviews/#letters or /reviews/#reviews
+        var hashType = {'#letters': 'letter', '#reviews': 'review'}[window.location.hash];
+        if (hashType) {
+            var pre = document.querySelector('[data-review-type="' + hashType + '"]');
+            if (pre) { pre.click(); }
+        }
         Array.prototype.forEach.call(sortButtons, function (btn) {
             btn.addEventListener('click', function () { applySort(btn.getAttribute('data-review-sort')); });
         });

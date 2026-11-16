@@ -56,13 +56,32 @@ Create a page with the slug `about`. It automatically uses the About layout:
 - Your staff profile **website** becomes the "Personal website" button.
 - Write the rest (your story, links to your other sites) in the page body.
 
+## Love letters
+
+Posts about games and films you fell for, told through their music.
+
+**Set up once**
+
+1. Tags › New tag: name `#love-letter` (internal tag; slug `hash-love-letter`).
+2. Pages › New page: title `Love letters`, page URL `letters`. Leave the body empty; the excerpt shows as a subtitle.
+3. Settings › Navigation: `Love letters` → `/letters/`.
+
+**For each letter**
+
+- **Title:** the game or film. **Feature image:** the soundtrack cover or key art.
+- **Tags:** `Soundtrack` · the composer as an artist tag (`artist-…`) · year (`year-…`) · `#love-letter`.
+- Standout tracks and the Listen embed work as in reviews.
+
+**What the tag changes:** a "Love letter" badge on cards, "Latest love letter" in the homepage hero, "A love letter to" above the title with a breadcrumb to `/letters/`, and a listing on the Love letters page. The Reviews page gets All / Reviews / Love letters buttons; `/reviews/#letters` opens it filtered.
+
 ## Index pages: Artists, Genres, Years
 
 Create three pages with these exact slugs. Their content is generated automatically from your tags:
 
 | Page slug | Lists |
 |---|---|
-| `reviews` | Every review (up to 100), with a live filter box and Newest / A–Z sorting |
+| `reviews` | Every review and love letter (up to 100), with a live filter box, All / Reviews / Love letters, and Newest / A–Z sorting |
+| `letters` | Every post with the internal tag `#love-letter` |
 | `artists` | Every tag whose slug starts with `artist-` |
 | `genres` | Every other public tag (not `artist-` or `year-`) |
 | `years` | Every tag whose slug starts with `year-`, newest first |
@@ -77,6 +96,7 @@ Settings › Navigation › Primary, for example:
 | Label | URL |
 |---|---|
 | Reviews | `/reviews/` |
+| Love letters | `/letters/` |
 | Artists | `/artists/` |
 | Genres | `/genres/` |
 | Years | `/years/` |

@@ -1,0 +1,42 @@
+name: Album to review
+description: Add an album to the review queue
+title: "[Review] Album — Artist"
+labels: [review]
+body:
+  - type: input
+    id: album
+    attributes:
+      label: Album
+    validations:
+      required: true
+  - type: input
+    id: artist
+    attributes:
+      label: Artist(s)
+      description: Separate joint artists with "&"
+    validations:
+      required: true
+  - type: input
+    id: year
+    attributes:
+      label: Release year
+  - type: input
+    id: genre
+    attributes:
+      label: Genre
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this album
+      description: When and how did it find you? What does it transmit?
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options: [Idea, Listening, Drafting, Ready]
+      default: 0
+  - type: input
+    id: listen
+    attributes:
+      label: Listen link
+      description: Spotify, Bandcamp or YouTube link for the Listen box

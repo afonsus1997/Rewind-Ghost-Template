@@ -22,7 +22,8 @@ This repository contains everything needed to run it:
 - **Latest review hero** with a large cover, the artist, the excerpt and tags
 - **Review pages** with a sidebar for a music embed (**Listen**) and **Standout tracks** with real track numbers, both filled automatically from the post body
 - **Artist pages**: every review of an artist on one page, with joint albums shown as "Artist A & Artist B"
-- **Index pages** for Reviews (with live filter and sorting), Artists, Genres and Years
+- **Love letters**: a series for games and films told through their soundtracks, with its own badge, post header and `/letters/` page
+- **Index pages** for Reviews (with live filter, type filter and sorting), Artists, Genres and Years
 - **About page** layout with portrait, bio and website link
 - **Newsletter signup** using Ghost members (works with Mailgun)
 - Built-in Ghost **search**, responsive layout, keyboard and screen-reader friendly
@@ -40,6 +41,10 @@ This repository contains everything needed to run it:
 |---|---|
 | ![Reviews index](docs/screenshots/reviews-index.png) | ![Artist page](docs/screenshots/artist-page.png) |
 
+| Love letter | Love letters index |
+|---|---|
+| ![Love letter post](docs/screenshots/love-letter.png) | ![Love letters index](docs/screenshots/letters-index.png) |
+
 | About page | Mobile |
 |---|---|
 | ![About page](docs/screenshots/about.png) | ![Mobile homepage and review](docs/screenshots/mobile.png) |
@@ -56,8 +61,38 @@ This repository contains everything needed to run it:
 1. **Run Ghost.** Copy `deploy/` to your server, fill in `.env`, run `docker compose up -d`, and point your reverse proxy at port `8098`.
    See [docs/INSTALL.md](docs/INSTALL.md) for every step, including DNS, HTTPS, email and backups.
 2. **Install the theme.** Download [`rewind.zip`](rewind.zip) (on GitHub: open it, then click **Download raw file**), or get it from the latest [release](../../releases). In Ghost admin › **Settings › Design › Change theme › Upload theme**, choose the zip and click **Activate**.
-3. **Create the pages** `about`, `reviews`, `artists`, `genres` and `years`, and set up navigation. See [docs/INSTALL.md#7-set-up-the-site](docs/INSTALL.md#7-set-up-the-site).
+3. **Create the pages** `about`, `reviews`, `letters`, `artists`, `genres` and `years`, and set up navigation. See [docs/INSTALL.md#7-set-up-the-site](docs/INSTALL.md#7-set-up-the-site).
 4. **Write your first review** following the [author guide](docs/AUTHOR-GUIDE.md).
+
+## Love letters
+
+Love letters are posts about **games and films you fell for, told through their music**. They sit alongside the album reviews but have their own badge, post header and page.
+
+**One-time setup**
+
+1. Ghost admin › **Tags › New tag**: name `#love-letter` (the `#` makes it an internal tag, hidden from readers; Ghost sets the slug to `hash-love-letter`).
+2. **Pages › New page**: title `Love letters`, page URL `letters`. Optional excerpt, e.g. "Games and films I fell for, told through their music." Leave the body empty: the list is generated.
+3. **Settings › Navigation**: add `Love letters` → `/letters/`.
+
+**Writing one**
+
+| Field | What to put there |
+|---|---|
+| Title | The game or film, e.g. *Lantern Tides* |
+| Feature image | The soundtrack cover (or the key art) |
+| Excerpt | What the music did for you, in a sentence |
+| Tags | `Soundtrack` · the composer as an artist tag (`artist-…`) · the year (`year-…`) · `#love-letter` |
+
+Open with a moment in the music, widen out to the story and your memories of it, and close back on the music. **Standout tracks** and the **Listen** embed work just like in reviews.
+
+**What readers see**
+
+- A **Love letter** badge on the cover in every list
+- "Latest love letter" on the homepage when a letter is the newest post
+- "A love letter to" above the title, and a breadcrumb back to `/letters/`
+- All letters on `/letters/`; the Reviews index can switch between **All**, **Reviews** and **Love letters** (`/reviews/#letters` opens it filtered)
+
+More detail in the [author guide](docs/AUTHOR-GUIDE.md#love-letters-games-and-films).
 
 ## Documentation
 
