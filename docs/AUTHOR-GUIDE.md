@@ -8,6 +8,7 @@ How to write and publish a review on Rewind.
 - [Before you write: tags](#before-you-write-tags)
 - [Writing the review](#writing-the-review)
 - [The sidebar: Listen and Standout tracks](#the-sidebar-listen-and-standout-tracks)
+- [Love letters: games and films](#love-letters-games-and-films)
 - [Publishing](#publishing)
 - [Checklist](#checklist)
 - [Quick reference](#quick-reference)
@@ -105,6 +106,40 @@ This shows as **03** Track x, **06** Track y. Without numbers, tracks are number
 
 If a review has no embed or no Standout tracks heading, that box doesn't appear. Tags always show.
 
+## Love letters: games and films
+
+Love letters are for games and films you fell for, **told through their music**. They're longer and more personal than a review and can wander into the story, the world and your memories of it, but the soundtrack stays at the centre: that's what keeps Rewind a music blog.
+
+### Setting one up
+
+| Field | What to put there |
+|---|---|
+| **Title** | The game or film, e.g. *Lantern Tides* |
+| **Feature image** | The soundtrack cover (or the game/film key art if there's no album) |
+| **Excerpt** | What the music did for you, in a sentence |
+| **Tags** | `Soundtrack` (genre) · the composer as an artist tag (`artist-…`) · year · **`#love-letter`** |
+
+`#love-letter` is an **internal tag**: the `#` keeps it hidden from readers, the genre buttons and the index pages, but the theme uses it to:
+
+- show a **Love letter** badge on cards and in the Reviews index
+- change the homepage hero to "Latest love letter"
+- add "A love letter to" above the title and link the breadcrumb to `/letters/`
+- list the post on the **Love letters** page
+
+Create the tag once in Ghost admin › Tags › New tag (name `#love-letter`; Ghost sets the slug to `hash-love-letter`), then pick it on each letter.
+
+Composers get artist pages like any musician, so a game score and the composer's albums end up side by side.
+
+### Keeping the music at the centre
+
+- **Open with a moment in the music:** a theme coming in, a track you replayed, the first time a motif returned.
+- Then widen out: the scene it played under, what the game or film was about, where you were in your life.
+- Come back to the music to close: what it transmits on its own, outside the game or film.
+- **Standout tracks** and the **Listen** embed work exactly as in reviews.
+- No scores, here too.
+
+The Reviews index lists both kinds of post; readers can switch between **All**, **Reviews** and **Love letters**. Link straight to a filtered list with `/reviews/#letters` or `/reviews/#reviews`.
+
 ## Publishing
 
 1. **Preview** the post (top right) on desktop and mobile.
@@ -138,3 +173,5 @@ To fix something after publishing, edit and click **Update**. Updates are not re
 | Add a page to the menu | Settings › Navigation |
 | Fix "artist-Name" showing on a review | Tags › edit the tag › Name `Name`, Slug `artist-name` |
 | See all reviews | `/reviews/` |
+| Make a post a love letter | Add the internal tag `#love-letter` |
+| See all love letters | `/letters/` |

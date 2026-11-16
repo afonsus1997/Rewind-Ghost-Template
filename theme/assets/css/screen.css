@@ -181,7 +181,7 @@ a:hover { color: var(--accent); }
     flex: 1 1 420px; max-width: 560px; aspect-ratio: 1 / 1;
     border-radius: var(--radius); overflow: hidden; background: var(--surface);
 }
-.hero-cover img { width: 100%; height: 100%; object-fit: cover; }
+.hero-cover img { width: 100%; height: 100%; object-fit: contain; }
 .hero-body { flex: 1 1 420px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 .hero-title {
     margin: 0;
@@ -213,7 +213,26 @@ a:hover { color: var(--accent); }
 .card-cover {
     display: block; aspect-ratio: 1 / 1; border-radius: var(--radius); overflow: hidden; background: var(--surface);
 }
-.card-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.card-cover { position: relative; }
+.card-cover img { width: 100%; height: 100%; object-fit: contain; transition: transform .3s ease; }
+.card-badge {
+    position: absolute; left: 12px; top: 12px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 10px; border-radius: 999px;
+    background: var(--accent); color: var(--on-accent);
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.row-badge {
+    display: inline-flex; align-items: center; gap: 5px; vertical-align: middle;
+    margin-left: 10px; padding: 4px 9px; border-radius: 999px;
+    border: 1px solid var(--accent); color: var(--accent);
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.letter-kicker {
+    display: inline-flex; align-items: center; gap: 8px; margin: 0 0 -8px;
+    font-family: var(--font-serif); font-style: italic; font-size: 26px; color: var(--accent);
+}
+.kicker svg { vertical-align: -1px; }
 .card-cover:hover img { transform: scale(1.03); }
 .card-body { display: flex; flex-direction: column; gap: 2px; }
 .card-title {
@@ -244,7 +263,7 @@ a:hover { color: var(--accent); }
     flex: 1 1 380px; max-width: 520px; aspect-ratio: 1 / 1;
     border-radius: var(--radius); overflow: hidden; background: var(--surface);
 }
-.review-cover img { width: 100%; height: 100%; object-fit: cover; }
+.review-cover img { width: 100%; height: 100%; object-fit: contain; }
 .review-intro { flex: 1 1 460px; display: flex; flex-direction: column; gap: 24px; }
 .breadcrumb {
     display: flex; gap: 10px;
@@ -394,7 +413,7 @@ a:hover { color: var(--accent); }
 .rows li { border-bottom: 1px solid var(--line); }
 .row { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; padding: 28px 0; }
 .row-cover { flex: 0 0 140px; height: 140px; border-radius: var(--radius); overflow: hidden; background: var(--surface); }
-.row-cover img { width: 100%; height: 100%; object-fit: cover; }
+.row-cover img { width: 100%; height: 100%; object-fit: contain; }
 .row-body { flex: 999 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
 .row-meta { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .row-title { font-family: var(--font-display); font-weight: 700; font-size: 36px; line-height: 1.05; letter-spacing: -0.02em; }
@@ -417,7 +436,7 @@ a:hover { color: var(--accent); }
     display: block; aspect-ratio: 1 / 1; margin-bottom: 8px;
     border-radius: var(--radius); overflow: hidden; background: var(--surface);
 }
-.tag-tile-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.tag-tile-cover img { width: 100%; height: 100%; object-fit: contain; transition: transform .3s ease; }
 .tag-tile:hover .tag-tile-cover img { transform: scale(1.03); }
 .tag-tile-name {
     font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 1.1; letter-spacing: -0.01em;

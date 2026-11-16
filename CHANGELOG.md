@@ -2,6 +2,16 @@
 
 All notable changes to the Rewind theme. Versions match `theme/package.json`.
 
+## 1.4.0
+
+- **Love letters**: posts with the internal tag `#love-letter` get a badge on cards, a "Latest love letter" hero, an "A love letter to" header, and their own `/letters/` page (`page-letters.hbs`).
+- Reviews index: **All / Reviews / Love letters** filter, also reachable via `/reviews/#letters` and `/reviews/#reviews`.
+- Review breadcrumb now links to `/reviews/`.
+
+## 1.3.3
+
+- Album covers are no longer cropped: non-square covers show in full inside their square frame.
+
 ## 1.3.2
 
 - Multiple artists on one album display as "Artist A & Artist B".

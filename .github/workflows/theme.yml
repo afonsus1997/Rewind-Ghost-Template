@@ -1,0 +1,68 @@
+name: Theme
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Validate and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate with gscan
+        run: npx --yes gscan@latest theme --fatal
+
+      - name: Build zip
+        run: bash scripts/build.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rewind-theme
+          path: dist/rewind.zip
+
+  release:
+    name: GitHub release
+    needs: check
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: rewind-theme
+          path: dist
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/rewind.zip
+          generate_release_notes: true
+
+  deploy:
+    name: Deploy to Ghost
+    needs: check
+    # Turn on by setting the repository variable GHOST_DEPLOY=true
+    # and the secrets GHOST_ADMIN_API_URL and GHOST_ADMIN_API_KEY.
+    if: github.ref == 'refs/heads/main' && vars.GHOST_DEPLOY == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: rewind-theme
+          path: dist
+
+      - name: Deploy theme
+        uses: TryGhost/action-deploy-theme@v1
+        with:
+          api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
+          api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          file: dist/rewind.zip

@@ -1,5 +1,5 @@
 <section class="container hero" aria-labelledby="hero-title">
-    <a class="hero-cover" href="{{url}}" aria-label="Read the review of {{title}}">
+    <a class="hero-cover" href="{{url}}" aria-label="{{#has tag="#love-letter"}}Read the love letter{{else}}Read the review{{/has}}: {{title}}">
         {{#if feature_image}}
             <img
                 srcset="{{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}} 960w"
@@ -11,11 +11,11 @@
         {{/if}}
     </a>
     <div class="hero-body">
-        <p class="kicker">Latest review &middot; {{date format="D MMM YYYY"}}</p>
+        <p class="kicker">{{#has tag="#love-letter"}}{{> "icon-heart"}} Latest love letter{{else}}Latest review{{/has}} &middot; {{date format="D MMM YYYY"}}</p>
         <h1 id="hero-title" class="hero-title"><a href="{{url}}">{{title}}</a></h1>
         <p class="hero-artist">{{> "artist-link"}}</p>
         <p class="hero-excerpt">{{excerpt words="45"}}</p>
         {{> "tag-pills"}}
-        <a class="btn btn-accent" href="{{url}}">Read the review</a>
+        <a class="btn btn-accent" href="{{url}}">{{#has tag="#love-letter"}}Read the love letter{{else}}Read the review{{/has}}</a>
     </div>
 </section>

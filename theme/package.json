@@ -1,7 +1,7 @@
 {
   "name": "rewind",
   "description": "A Ghost theme for feelings-first album reviews: no scores, just what an album transmits and the story behind it.",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "engines": {
     "ghost": ">=5.0.0"
   },

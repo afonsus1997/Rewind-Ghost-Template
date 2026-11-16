@@ -1,0 +1,32 @@
+{{!< default}}
+
+<section class="container archive-head">
+    {{#post}}
+    <div class="archive-intro">
+        <p class="kicker">{{> "icon-heart"}} Series</p>
+        <h1 class="archive-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="archive-desc">{{custom_excerpt}}</p>{{/if}}
+    </div>
+    {{/post}}
+    {{#get "posts" filter="tag:hash-love-letter" limit="1" fields="id"}}
+    <dl class="stats">
+        <div><dt>Letters</dt><dd>{{pagination.total}}</dd></div>
+    </dl>
+    {{/get}}
+</section>
+
+{{#post}}
+{{#if html}}
+    <div class="container review-body index-intro"><div class="gh-content">{{content}}</div></div>
+{{/if}}
+{{/post}}
+
+<section class="container archive-list" aria-label="All love letters">
+    {{#get "posts" filter="tag:hash-love-letter" limit="100" include="tags" order="published_at desc"}}
+        <div class="post-grid">
+            {{#foreach posts}}{{> "post-card"}}{{/foreach}}
+        </div>
+    {{else}}
+        <p class="archive-desc">No love letters yet. Add the internal tag <code>#love-letter</code> to a post to list it here.</p>
+    {{/get}}
+</section>

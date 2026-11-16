@@ -1,5 +1,5 @@
 <article class="card {{post_class}}">
-    <a class="card-cover" href="{{url}}" aria-label="Read the review of {{title}}">
+    <a class="card-cover" href="{{url}}" aria-label="{{#has tag="#love-letter"}}Read the love letter{{else}}Read the review{{/has}}: {{title}}">
         {{#if feature_image}}
             <img
                 srcset="{{img_url feature_image size="s"}} 320w, {{img_url feature_image size="m"}} 600w"
@@ -9,6 +9,7 @@
         {{else}}
             <span class="cover-fallback" aria-hidden="true"></span>
         {{/if}}
+        {{#has tag="#love-letter"}}<span class="card-badge">{{> "icon-heart"}} Love letter</span>{{/has}}
     </a>
     <div class="card-body">
         <h3 class="card-title"><a href="{{url}}">{{title}}</a></h3>

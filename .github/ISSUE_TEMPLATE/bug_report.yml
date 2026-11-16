@@ -1,0 +1,39 @@
+name: Bug report
+description: Something in the theme looks or works wrong
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you see, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Page
+      description: Which page or URL? e.g. /reviews/, a review, the homepage
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to …
+        2. Click …
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options: [Desktop, Mobile, Both]
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Rewind theme version (Settings › Design) and Ghost version
+      placeholder: Rewind 1.3.2, Ghost 6.77.0
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag images here if helpful

@@ -16,9 +16,14 @@
         </div>
         <div class="review-intro">
             <nav class="breadcrumb" aria-label="Breadcrumb">
-                <a href="{{@site.url}}">Reviews</a>
+                {{#has tag="#love-letter"}}
+                    <a href="{{@site.url}}/letters/">Love letters</a>
+                {{else}}
+                    <a href="{{@site.url}}/reviews/">Reviews</a>
+                {{/has}}
                 {{#primary_tag}}{{#match slug "~^" "artist-"}}{{else}}<span aria-hidden="true">/</span><a href="{{url}}">{{name}}</a>{{/match}}{{/primary_tag}}
             </nav>
+            {{#has tag="#love-letter"}}<p class="letter-kicker">{{> "icon-heart"}} A love letter to</p>{{/has}}
             <h1 class="review-title">{{title}}</h1>
             <p class="review-artist">{{> "artist-link"}}</p>
             <dl class="review-meta">
